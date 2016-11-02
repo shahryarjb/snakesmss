@@ -160,17 +160,13 @@ $model = $this->getModel('sender');
                             <table class="table table-hover">
                               <tbody>
 								<tr>
-									<th> <?php echo JHtml::_('grid.checkall'); ?></th>
 									<th>شناسه</th>
 									<th>تاریخ ارسال</th>
 									<th>تعداد کاربران ارسال شده</th>
 								</tr>
 								<?php foreach ($this->items as $i => $row) :
 				?>             
-								<tr>
-								<td>
-								<?php echo JHtml::_('grid.id', $i, $row->id); ?>
-								</td>            
+								<tr>         
 								<td><?php echo $row->id; ?> </td>
 								<td>
 								<?php echo $row->time; ?>
