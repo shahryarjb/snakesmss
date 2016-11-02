@@ -51,7 +51,7 @@ class SnakesmsViewListpics extends JViewLegacy
 		}
 
 		// Set the submenu
-		SnakesmsHelper::addSubmenu('teachers');
+		//SnakesmsHelper::addSubmenu('teachers');
 
 		// Set the toolbar and number of found items
 		$this->addToolBar();
