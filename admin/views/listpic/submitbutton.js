@@ -28,7 +28,8 @@ Joomla.submitbutton = function(task)
 		}
 		else
 		{
-			alert(Joomla.JText._('COM_MINIUNIVERSITY_TEACHER_ERROR_UNACCEPTABLE'));
+			alert(Joomla.JText._('COM_BACKPIC_MINIUNIVERSITY_ERROR_UNACCEPTABLE',
+			                     'Some values are unacceptable'));
 			return false;
 		}
 	}

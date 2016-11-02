@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_TinyPayment
+ * @subpackage  com_miniuniversity
  *
  * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -15,10 +15,10 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class SnakesmsViewSnakesmss extends JViewLegacy
+class SnakesmsViewListpics extends JViewLegacy
 {
 	/**
-	 * Display the TinyPayment view
+	 * Display the Hello World view
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
 	 *
@@ -29,7 +29,7 @@ class SnakesmsViewSnakesmss extends JViewLegacy
 		
 		// Get application
 		$app = JFactory::getApplication();
-		$context = "snakesms.list.admin.snakesms";
+		$context = "snakesms.list.admin.listpic";
 		// Get data from the model
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
@@ -51,7 +51,7 @@ class SnakesmsViewSnakesmss extends JViewLegacy
 		}
 
 		// Set the submenu
-		// TinyPaymentHelper::addSubmenu('tinypayments');
+		SnakesmsHelper::addSubmenu('teachers');
 
 		// Set the toolbar and number of found items
 		$this->addToolBar();
@@ -72,28 +72,26 @@ class SnakesmsViewSnakesmss extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		$title = JText::_('ذخیره پرداخت ها');
+		$title = JText::_('COM_BACKPIC_MANAGER_TEACHERS');
 
-		
-		//  if ($this->pagination->total)
-		// {
-		// 	$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
-		// }
-		
+		if ($this->pagination->total)
+		{
+			$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
+		}
 
-		JToolBarHelper::title($title, 'snakesms');
+		JToolBarHelper::title($title, 'listpic');
 
 		if ($this->canDo->get('core.create')) 
 		{
-			JToolBarHelper::addNew('snakesms.add', 'JTOOLBAR_NEW');
+			JToolBarHelper::addNew('listpic.add', 'JTOOLBAR_NEW');
 		}
 		if ($this->canDo->get('core.edit')) 
 		{
-			JToolBarHelper::editList('snakesms.edit', 'JTOOLBAR_EDIT');
+			JToolBarHelper::editList('listpic.edit', 'JTOOLBAR_EDIT');
 		}
 		if ($this->canDo->get('core.delete')) 
 		{
-			JToolBarHelper::deleteList('', 'snakesmss.delete', 'JTOOLBAR_DELETE');
+			JToolBarHelper::deleteList('', 'listpics.delete', 'JTOOLBAR_DELETE');
 		}
 		if ($this->canDo->get('core.admin')) 
 		{
@@ -109,6 +107,6 @@ class SnakesmsViewSnakesmss extends JViewLegacy
 	protected function setDocument() 
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_('صفحه ذخیره پرداخت ها'));
+		$document->setTitle(JText::_('COM_BACKPIC_TEACHERS_TITLE'));
 	}
 }

@@ -2,11 +2,11 @@
 /**
  * @copyright   Copyright (C) 2016 Open Source Matters, Inc. All rights reserved. ( https://trangell.com )
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @subpackage  com_TinyPayment
+ * @subpackage  com_MiniUniversity
  */
 defined('_JEXEC') or die('Restricted access');
 
-class SnakesmsTableSnakesms extends JTable
+class SnakesmsTableListpic extends JTable
 {
 
 	function __construct(&$db)
@@ -18,12 +18,10 @@ class SnakesmsTableSnakesms extends JTable
 	{
 		if (isset($array['params']) && is_array($array['params']))
 		{
-
 			$parameter = new JRegistry;
 			$parameter->loadArray($array['params']);
 			$array['params'] = (string)$parameter;
 		}
-
 
 		if (isset($array['rules']) && is_array($array['rules']))
 		{
@@ -38,7 +36,6 @@ class SnakesmsTableSnakesms extends JTable
 	{
 		if (parent::load($pk, $reset))
 		{
-
 			$params = new JRegistry;
 			$this->params = $params;
 			return true;
@@ -46,7 +43,7 @@ class SnakesmsTableSnakesms extends JTable
 		else
 		{
 			return false;
-		} 
+		}
 	}
 
 	protected function _getAssetName()
@@ -57,7 +54,7 @@ class SnakesmsTableSnakesms extends JTable
 
 	protected function _getAssetTitle()
 	{
-		return $this->path;
+		return $this->greeting;
 	}
 
 	protected function _getAssetParentId(JTable $table = NULL, $id = NULL)
@@ -80,5 +77,4 @@ class SnakesmsTableSnakesms extends JTable
 		}
 		return $assetParentId;
 	}
-	
 }

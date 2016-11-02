@@ -13,23 +13,23 @@ JHtml::_('behavior.formvalidation');
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_snakesms&layout=edit&id=' . (int) $this->item->id); ?>"
     method="post" name="adminForm" id="adminForm" class="form-validate">
-	<div class="form-horizontal">
-		<?php foreach ($this->form->getFieldsets() as $name => $fieldset): ?>
-			<fieldset class="adminform">
-				<legend><?php echo JText::_($fieldset->label); ?></legend>
+    <div class="form-horizontal">
 				<div class="row-fluid">
-					<div class="span6">
-						<?php foreach ($this->form->getFieldset($name) as $field): ?>
+					<div class="span12">
 							<div class="control-group">
-								<div class="control-label"><?php echo $field->label; ?></div>
-								<div class="controls"><?php echo $field->input; ?></div>
+							<?php echo $this->form->getInput('id'); ?>
+								<div class="control-label"> <?php echo $this->form->getLabel('name'); ?></div>
+								<div class="controls"><?php echo $this->form->getInput('name'); ?></div>
 							</div>
-						<?php endforeach; ?>
+							<!--  -->
+							<div class="control-group">
+								<div class="control-label"> <?php echo $this->form->getLabel('mobile'); ?></div>
+								<div class="controls"><?php echo $this->form->getInput('mobile'); ?></div>
+							</div>
 					</div>
 				</div>
-			</fieldset>
-		<?php endforeach; ?>
 	</div>
-	<input type="hidden" name="task" value="snakesms.edit" />
+
+	<input type="hidden" name="task" value="listpic.edit" />
 	<?php echo JHtml::_('form.token'); ?>
 </form>

@@ -6,18 +6,24 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-class SnakesmsControllerSnakesms extends JControllerForm
-{
+class SnakesmsControllerListpic extends JControllerForm {
 
 	protected function allowAdd($data = array()) {
 		return parent::allowAdd($data);
 	}
-	protected function allowEdit($data = array(), $key = 'id')
-	{
+
+	protected function allowEdit($data = array(), $key = 'id') {
 		$id = isset( $data[ $key ] ) ? $data[ $key ] : 0;
-		if( !empty( $id ) )
-		{
+		if( !empty( $id ) ) {
 			return JFactory::getUser()->authorise( "core.edit", "com_snakesms.message." . $id );
+		}
+	}
+	
+	protected function postSaveHook(JModelLegacy &$model, $validData = array()) {
+		if(isset($validData['cat_id'])){
+		$data['cat_id'] = implode(',', $validData['cat_id']);
+		
+		return $model->save($data);
 		}
 	}
 }

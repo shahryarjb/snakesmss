@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_TinyPayment
+ * @subpackage  com_miniuniversity
  *
  * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class SnakesmsViewSnakesms extends JViewLegacy
+class SnakesmsViewListpic extends JViewLegacy
 {
 	protected $form;
 	protected $item;
@@ -37,7 +37,7 @@ class SnakesmsViewSnakesms extends JViewLegacy
 		$this->script = $this->get('Script');
 
 		// What Access Permissions does this user have? What can (s)he do?
-		$this->canDo = snakesmsHelper::getActions($this->item->id);
+		$this->canDo = SnakesmsHelper::getActions($this->item->id);
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -73,33 +73,44 @@ class SnakesmsViewSnakesms extends JViewLegacy
 
 		$isNew = ($this->item->id == 0);
 
-		JToolBarHelper::title($isNew ? JText::_('COM_MINIUNIVERSITY_MANAGER_TEACHER_NEW')
-		                             : JText::_('صفحه نمایش فاکتور'), 'tinypayment');
+		JToolBarHelper::title($isNew ? JText::_('COM_BACKPIC_ADD')
+		                             : JText::_('COM_BACKPIC_EDIT'), 'snakesms');
 		// Build the actions for new and existing records.
 		if ($isNew)
 		{
 			// For new records, check the create permission.
 			if ($this->canDo->get('core.create')) 
 			{
-				JToolBarHelper::apply('snakesms.apply', 'JTOOLBAR_APPLY');
-				JToolBarHelper::save('snakesms.save', 'JTOOLBAR_SAVE');
-				
+				JToolBarHelper::apply('listpic.apply', 'JTOOLBAR_APPLY');
+				JToolBarHelper::save('listpic.save', 'JTOOLBAR_SAVE');
+				JToolBarHelper::custom('listpic.save2new', 'save-new.png', 'save-new_f2.png',
+				                       'JTOOLBAR_SAVE_AND_NEW', false);
 			}
-			JToolBarHelper::cancel('snakesms.cancel', 'JTOOLBAR_CANCEL');
+			JToolBarHelper::cancel('listpic.cancel', 'JTOOLBAR_CANCEL');
 		}
 		else
 		{
 			if ($this->canDo->get('core.edit'))
 			{
 				// We can save the new record
-				JToolBarHelper::apply('snakesms.apply', 'JTOOLBAR_APPLY');
-				JToolBarHelper::save('snakesms.save', 'JTOOLBAR_SAVE');
+				JToolBarHelper::apply('listpic.apply', 'JTOOLBAR_APPLY');
+				JToolBarHelper::save('listpic.save', 'JTOOLBAR_SAVE');
  
+				// We can save this record, but check the create permission to see
+				// if we can return to make a new one.
+				if ($this->canDo->get('core.create')) 
+				{
+					JToolBarHelper::custom('listpic.save2new', 'save-new.png', 'save-new_f2.png',
+					                       'JTOOLBAR_SAVE_AND_NEW', false);
+				}
 			}
-		
-			JToolBarHelper::cancel('snakesms.cancel', 'JTOOLBAR_CLOSE');
+			if ($this->canDo->get('core.create')) 
+			{
+				JToolBarHelper::custom('listpic.save2copy', 'save-copy.png', 'save-copy_f2.png',
+				                       'JTOOLBAR_SAVE_AS_COPY', false);
+			}
+			JToolBarHelper::cancel('listpic.cancel', 'JTOOLBAR_CLOSE');
 		}
-		
 	}
 	/**
 	 * Method to set up the document properties
@@ -110,10 +121,11 @@ class SnakesmsViewSnakesms extends JViewLegacy
 	{
 		$isNew = ($this->item->id == 0);
 		$document = JFactory::getDocument();
-		$document->setTitle($isNew ? JText::_('COM_MINIUNIVERSITY_TEACHER_CREATING')
-		                           : JText::_('نمایش اطلاعات فاکتور کاربر'));
+		$document->setTitle($isNew ? JText::_('COM_BACKPIC_ADD')
+		                           : JText::_('COM_BACKPIC_EDIT'));
 		$document->addScript(JURI::root() . $this->script);
-		
-		JText::script('COM_MINIUNIVERSITY_TEACHER_ERROR_UNACCEPTABLE');
+		$document->addScript(JURI::root() . "/administrator/components/com_snakesms"
+		                                  . "/views/listpic/submitbutton.js");
+		JText::script('COM_BACKPIC_ERROR_UNACCEPTABLE');
 	}
 }
