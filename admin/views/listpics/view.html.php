@@ -83,6 +83,7 @@ class SnakesmsViewListpics extends JViewLegacy
 
 		if ($this->canDo->get('core.create')) 
 		{
+
 			JToolBarHelper::addNew('listpic.add', 'JTOOLBAR_NEW');
 		}
 		if ($this->canDo->get('core.edit')) 
@@ -97,6 +98,7 @@ class SnakesmsViewListpics extends JViewLegacy
 		{
 			JToolBarHelper::divider();
 			JToolBarHelper::preferences('com_snakesms');
+			JToolBarHelper::custom('listpics.csv2', 'download','csv','ارسال پیامک',false);
 		}
 	}
 	/**

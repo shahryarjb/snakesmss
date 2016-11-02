@@ -18,7 +18,9 @@ $user = JFactory::getUser();
 
 $listOrder     = $this->escape($this->filter_order);
 $listDirn      = $this->escape($this->filter_order_Dir);
+$model = $this->getModel('listpics');
 ?>
+
 <form action="index.php?option=com_snakesms&view=listpics" method="post" id="adminForm" name="adminForm">
 
 <div class="container-fluid">
@@ -46,9 +48,9 @@ $listDirn      = $this->escape($this->filter_order_Dir);
       <ul class="sidbarsICo">
       <!-- <div class="margin"></div> -->
  <li class="lisidbars">
-					<a href="index.php?option=com_tinypayment&view=storepayments">
+					<a href="index.php?option=com_snakesms&view=listpics">
 					  <i class="fa fa-home" aria-hidden="true"></i>
-             ذخیره پرداخت ها
+             کاربران ثبت شده
 					</a>
 				</li>
 
@@ -63,7 +65,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
  <li class="lisidbars">
           <a href="index.php?option=com_tinypayment&view=statistics">
             <i class="fa fa-balance-scale" aria-hidden="true"></i>
-           آمار
+          آمار
           </a>
         </li>
 
@@ -96,14 +98,14 @@ $listDirn      = $this->escape($this->filter_order_Dir);
         <div class="span12">
           <div class="row-fluid">
             <div class="span4 borders a1">
-              <h3>تعداد کل تراکنش ها</h3>
+              <h3>شارژ باقی مانده</h3>
               <i class="fa fa-file-text-o"></i> 
-3
+	<?php intval($model->price()); ?>
             </div>
             <div class="span4 borders a2">
-              <h3>تراکنشات ناموفق</h3>
+              <h3>تعداد کاربران</h3>
               <i class="fa fa-flask"></i>
-2
+	<?php echo count($this->items); ?>
             </div>
             <div class="span4 borders a3">
               <h3>تراکنشات موفق</h3>
@@ -116,7 +118,6 @@ $listDirn      = $this->escape($this->filter_order_Dir);
             <div class="clearfix"></div>
 
 <div class="span6">
-			<?php echo JText::_('جستجوی فاکتور'); ?>
 			<?php
 				echo JLayoutHelper::render(
 					'joomla.searchtools.default',
@@ -140,9 +141,13 @@ $listDirn      = $this->escape($this->filter_order_Dir);
                 <!-- start span12 info boards -->
                     <div class="box box-success">
             <div class="box-header with-border">
-              <h3 class="box-title"><i class="fa fa-file-text-o"></i>جدول اطلاعات پرداخت</h3>
-		<?php if (!empty($this->items)) : ?>
-			
+            <?php if (!empty($this->items)) : ?>
+            	<div style=" background: rgba(218, 218, 218, 0.17); padding: 8px; border-radius: 5px;">
+            	<p> پیام ارسال خود را در کادر زیر قرار بدهید و بعد روی دکمه ارسال پیامک کلیک کنید </p>
+            	<textarea name="sms" rows="7" cols="100" style="min-width:98%"></textarea>
+            	</div>
+            	</br>
+              <h3 class="box-title"><i class="fa fa-file-text-o"></i> لیست کاربران ثبت شده</h3>
 				<div class="row-fluid">
 				<div class="span12">
 				<div class="box-body table-responsive no-padding">

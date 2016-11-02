@@ -56,5 +56,30 @@ class SnakesmsModelListpics extends JModelList
 		return $query;
 
 	 }
+
+	function allusers() {
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query->select('mobile');
+		$query->from($db->quoteName('#__trangell_sms'));
+		$db->setQuery($query);
+		$column= $db->loadColumn();
+		//$a = array('09368094936','09213380329');
+		$b = '"' . implode('","',$column)  . '"';
+		$c = explode(",", $b);
+		return $c;
+	 }
+
+	 function price(){
+	 	ini_set("soap.wsdl_cache_enabled", "0");
+		  try {
+			$client = new SoapClient("http://87.107.121.54/post/send.asmx?wsdl");
+			$getcreditresultintval = intval($client->GetCredit(array("username"=>"khatoghalam","password"=>"Ali@1654"))->GetCreditResult);
+			echo $getcreditresultintval;
+		 } catch (SoapFault $ex) {
+		    	echo $ex->faultstring;
+		    }
+		
+	 }
 }
 ?>
