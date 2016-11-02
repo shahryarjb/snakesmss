@@ -6,7 +6,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-class SnakesmsModelListpics extends JModelList
+class SnakesmsModelSender extends JModelList
 {
 
 	public function __construct($config = array())
@@ -14,9 +14,7 @@ class SnakesmsModelListpics extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id',
-				'name',
-				'mobile'
+				'id'
 			);
 		}
 
@@ -27,11 +25,9 @@ class SnakesmsModelListpics extends JModelList
 	{
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-
 		$query->select('*')
-				  ->from('#__trangell_sms');
+				  ->from('#__trangell_sms_logs');
 		$search = $this->getState('filter.search');
-
 		if (!empty($search))
 		{
 			$like = $db->quote('%' . $search . '%');
@@ -55,16 +51,6 @@ class SnakesmsModelListpics extends JModelList
 		$b = '"' . implode('","',$column)  . '"';
 		$c = explode(",", $b);
 		return $c;
-	 }
-
-	function alllogs() {
-		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
-		$query->select('id');
-		$query->from($db->quoteName('#__trangell_sms_logs'));
-		$db->setQuery($query);
-		$column= $db->loadColumn();
-		return $column;
 	 }
 
 	 function price(){

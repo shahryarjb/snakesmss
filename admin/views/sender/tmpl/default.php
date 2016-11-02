@@ -18,7 +18,7 @@ $user = JFactory::getUser();
 
 $listOrder     = $this->escape($this->filter_order);
 $listDirn      = $this->escape($this->filter_order_Dir);
-$model = $this->getModel('listpics');
+$model = $this->getModel('sender');
 ?>
 
 <form action="index.php?option=com_snakesms&view=listpics" method="post" id="adminForm" name="adminForm">
@@ -60,7 +60,7 @@ $model = $this->getModel('listpics');
              ارسال انبوه
           </a>
         </li>
-        
+
  <li class="lisidbars">
 					<a href="index.php?option=com_tinypayment&view=outputs">
 					  <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -111,12 +111,12 @@ $model = $this->getModel('listpics');
             <div class="span4 borders a2">
               <h3>تعداد کاربران</h3>
               <i class="fa fa-flask"></i>
-	<?php echo count($this->items); ?>
+	<?php echo count($model->allusers()); ?>
             </div>
             <div class="span4 borders a3">
               <h3>دفعات ارسال</h3>
               <i class="fa fa-diamond"></i>
-    <?php echo count($model->alllogs()); ?>
+<?php echo count($this->items); ?>
             </div>
           </div>
             <div class="clearfix"></div>
@@ -153,7 +153,7 @@ $model = $this->getModel('listpics');
             	<textarea name="sms" rows="7" cols="100" style="min-width:98%"></textarea>
             	</div>
             	</br>
-              <h3 class="box-title"><i class="fa fa-file-text-o"></i> لیست کاربران ثبت شده</h3>
+              <h3 class="box-title"><i class="fa fa-file-text-o"></i> لیست پیام های ارسال شده</h3>
 				<div class="row-fluid">
 				<div class="span12">
 				<div class="box-body table-responsive no-padding">
@@ -161,12 +161,11 @@ $model = $this->getModel('listpics');
                               <tbody>
 								<tr>
 									<th> <?php echo JHtml::_('grid.checkall'); ?></th>
-									<th>ردیف</th>
-									<th>نام و نام خانوادگی</th>
-									<th>موبایل</th>
+									<th>شناسه</th>
+									<th>تاریخ ارسال</th>
+									<th>تعداد کاربران ارسال شده</th>
 								</tr>
 								<?php foreach ($this->items as $i => $row) :
-				$link = JRoute::_('index.php?option=com_snakesms&view=listpic&layout=edit&id=' . $row->id);
 				?>             
 								<tr>
 								<td>
@@ -174,11 +173,9 @@ $model = $this->getModel('listpics');
 								</td>            
 								<td><?php echo $row->id; ?> </td>
 								<td>
-								<a href="<?php echo $link; ?>" title="<?php echo JText::_('مشاهده کامل اطلاعات پرداخت'); ?>">
-								<?php echo $row->name; ?>
-								</a>
+								<?php echo $row->time; ?>
 								</td>
-								<td> <?php echo $row->mobile; ?></td>
+								<td> <?php echo $row->count; ?></td>
                                 </tr>
  <?php endforeach; ?>
                             </tbody>

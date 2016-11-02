@@ -6,8 +6,8 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-class SnakesmsControllerListpics extends JControllerAdmin {
-	public function getModel($name = 'listpic', $prefix = 'SnakesmsModel', $config = array('ignore_request' => true))
+class SnakesmsControllerSender extends JControllerAdmin {
+	public function getModel($name = 'sender', $prefix = 'SnakesmsModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 
@@ -16,10 +16,9 @@ class SnakesmsControllerListpics extends JControllerAdmin {
 
 	public function csv2() {
 		JSession::checkToken( 'post' ) or die( 'Invalid Token' );
-		$model = $this->getModel('listpics');
+		$model = $this->getModel('sender');
 		$allusers = $model->allusers();
 		$app = JFactory::getApplication();
-		$link = "index.php?option=com_snakesms";
 		$jinput = JFactory::getApplication()->input;
 		$sms = $jinput->post->getString('sms', '');
 		if (empty($sms)) {
@@ -47,8 +46,7 @@ class SnakesmsControllerListpics extends JControllerAdmin {
 			$query->set($db->qn('count').' = '.$db->q(count($allusers)));	
 			$db->setQuery((string)$query);
 			$db->execute();
-			
-			$app->redirect(JRoute::_($link), "مبلغ باقی مانده از حساب شما {$getcreditresultintval} می باشد", $msgType='Error'); 
+			$app->redirect(JRoute::_('index.php?option=com_snakesms&view=sender', false), "مبلغ باقی مانده از حساب شما {$getcreditresultintval} می باشد", $msgType='Error'); 
 			$app->close();	
 		 } catch (SoapFault $ex) {
 		    	echo $ex->faultstring;
