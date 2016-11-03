@@ -14,6 +14,7 @@ JHtml::_('formbehavior.chosen', 'select');
 JHtml::stylesheet(JURI::root().'components/com_tinypayment/ui/dist/css/customadmin.css');
 JHtml::stylesheet(JURI::root().'components/com_tinypayment/ui/dist/css/custom.css');
 JHtml::stylesheet('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
+JHtml::script('http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
 $user = JFactory::getUser();
 
 $listOrder     = $this->escape($this->filter_order);
@@ -150,7 +151,12 @@ $model = $this->getModel('listpics');
             <?php if (!empty($this->items)) : ?>
             	<div style=" background: rgba(218, 218, 218, 0.17); padding: 8px; border-radius: 5px;">
             	<p> پیام ارسال خود را در کادر زیر قرار بدهید و بعد روی دکمه ارسال پیامک کلیک کنید </p>
-            	<textarea name="sms" rows="7" cols="100" style="min-width:98%"></textarea>
+                  <textarea name="sms" id="sms" rows="7" cols="100" style="min-width:98%" onkeyup="countChar(this)"></textarea>
+                  <span style="float: right">تعداد کاراکتر : </span><div id="charNum" style="float: right"></div>
+                  </br>
+                    <div class="clearfix"></div>
+                  <span id="txt"><span>
+                  <div class="clearfix"></div>
             	</div>
             	</br>
               <h3 class="box-title"><i class="fa fa-file-text-o"></i> لیست کاربران ثبت شده</h3>
@@ -227,3 +233,44 @@ $model = $this->getModel('listpics');
 	<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 	<?php echo JHtml::_('form.token'); ?>
 </form>
+<script>
+      function countChar(val) {
+        var len = val.value.length;
+        var count = $('#charNum').text(len);
+        var arabic = /[\u0600-\u06FF]/;
+        if(arabic.test($("textarea#sms").val())){
+              if(len <= 70) {
+                    $("span#txt").text("واحد پیامک : 1");
+              }else if(len > 70 && len < 134) {
+                    $("span#txt").text("واحد پیامک : 2");
+              }else if (len > 134 && len < 201) {
+                    $("span#txt").text("واحد پیامک : 3");
+              }else if (len > 201 && len < 268) {
+                    $("span#txt").text("واحد پیامک : 4");
+              }else if (len > 268 && len < 335) {
+                    $("span#txt").text("واحد پیامک : 5");
+              }else if (len > 335 && len < 402) {
+                    $("span#txt").text("واحد پیامک : 6");
+              }else if (len > 402 && len < 469) {
+                    $("span#txt").text("واحد پیامک : 7");
+              }else if (len > 469 && len < 536) {
+                    $("span#txt").text("واحد پیامک : 8");
+              }
+        }else {
+              if(len <= 160) {
+                    $("span#txt").text("واحد پیامک : 1");
+              }else if(len > 160 && len < 306) {
+                    $("span#txt").text("واحد پیامک : 2");
+              }else if (len > 306 && len < 459) {
+                    $("span#txt").text("واحد پیامک : 3");
+              }else if (len > 459 && len < 612) {
+                    $("span#txt").text("واحد پیامک : 4");
+              }else if (len > 612 && len < 765) {
+                    $("span#txt").text("واحد پیامک : 5");
+              }else if (len > 765 && len < 918) {
+                    $("span#txt").text("واحد پیامک: 6");
+              }
+        }
+
+      };
+    </script>
