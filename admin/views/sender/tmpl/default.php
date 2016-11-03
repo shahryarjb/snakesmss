@@ -170,6 +170,7 @@ $model = $this->getModel('sender');
 									<th>شناسه</th>
 									<th>تاریخ ارسال</th>
 									<th>تعداد کاربران ارسال شده</th>
+                                                      <th>واحد پیامک</th>
 								</tr>
 								<?php foreach ($this->items as $i => $row) :
 				?>             
@@ -179,6 +180,7 @@ $model = $this->getModel('sender');
 								<?php echo $row->time; ?>
 								</td>
 								<td> <?php echo $row->count; ?></td>
+                                                 <td> <?php echo intval($row->smsnumb); ?></td>
                                 </tr>
  <?php endforeach; ?>
                             </tbody>

@@ -167,7 +167,7 @@ $model = $this->getModel('listpics');
                               <tbody>
 								<tr>
 									<th> <?php echo JHtml::_('grid.checkall'); ?></th>
-									<th>ردیف</th>
+									<th>شناسه</th>
 									<th>نام و نام خانوادگی</th>
 									<th>موبایل</th>
 								</tr>
