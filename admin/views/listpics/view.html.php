@@ -72,7 +72,7 @@ class SnakesmsViewListpics extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		$title = JText::_('COM_BACKPIC_MANAGER_TEACHERS');
+		$title = JText::_('خبرنامه پیامکی جوملا');
 
 		if ($this->pagination->total)
 		{
@@ -109,6 +109,6 @@ class SnakesmsViewListpics extends JViewLegacy
 	protected function setDocument() 
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_('COM_BACKPIC_TEACHERS_TITLE'));
+		$document->setTitle(JText::_('کامپوننت خبرنامه پیامکی جوملا ترانگل'));
 	}
 }

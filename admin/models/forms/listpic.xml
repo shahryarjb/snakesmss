@@ -13,7 +13,7 @@
 				<field
 				name="name"
 				type="text"
-				label="name"
+				label="نام و نام خانوادگی"
 				description=""
 				size="60"
 				class="inputbox"
@@ -25,7 +25,7 @@
 				<field
 				name="mobile"
 				type="text"
-				label="mobile"
+				label="شماره موبایل"
 				description=""
 				size="40"
 				class="inputbox"

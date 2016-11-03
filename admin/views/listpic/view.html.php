@@ -73,8 +73,8 @@ class SnakesmsViewListpic extends JViewLegacy
 
 		$isNew = ($this->item->id == 0);
 
-		JToolBarHelper::title($isNew ? JText::_('COM_BACKPIC_ADD')
-		                             : JText::_('COM_BACKPIC_EDIT'), 'snakesms');
+		JToolBarHelper::title($isNew ? JText::_('اضافه کردن اطلاعات فردی')
+		                             : JText::_('ویرایش اطلاعات فردی'), 'snakesms');
 		// Build the actions for new and existing records.
 		if ($isNew)
 		{
@@ -121,8 +121,8 @@ class SnakesmsViewListpic extends JViewLegacy
 	{
 		$isNew = ($this->item->id == 0);
 		$document = JFactory::getDocument();
-		$document->setTitle($isNew ? JText::_('COM_BACKPIC_ADD')
-		                           : JText::_('COM_BACKPIC_EDIT'));
+		$document->setTitle($isNew ? JText::_('اضافه کردن اطلاعات فردی')
+		                           : JText::_('ویرایش اطلاعات فردی'));
 		$document->addScript(JURI::root() . $this->script);
 		$document->addScript(JURI::root() . "/administrator/components/com_snakesms"
 		                                  . "/views/listpic/submitbutton.js");
