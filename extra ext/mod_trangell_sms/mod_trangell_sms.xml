@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>mod_trangell_sms</name>
+    <author>trangell team</author>
+    <version>1.0.1</version>
+	<creationDate>October 2016</creationDate>
+	<copyright>Copyright (C) 2016 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>info@trangell.com</authorEmail>
+	<authorUrl>https://trangell.com</authorUrl>
+    <description>mod_trangell_sms</description>
+    <files>
+        <filename>mod_trangell_sms.xml</filename>
+        <filename module="mod_trangell_sms">mod_trangell_sms.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>css/sms.css</filename>
+        <filename>css/jquery-1.11.3.min.js</filename>
+    </files>
+        <languages>
+        <language tag="en-GB">en-GB.mod_trangell_sms.ini</language>
+        <language tag="en-GB">en-GB.mod_trangell_sms.sys.ini</language>
+        <language tag="fa-IR">fa-IR.mod_trangell_sms.ini</language>
+        <language tag="fa-IR">fa-IR.mod_trangell_sms.sys.ini</language>
+    </languages>
+    <config>
+
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="user_id" type="int" default="" label="پیغام مدیریت" description=""></field>
+
+                </fieldset>
+                </fields>
+    </config>
+</extension>

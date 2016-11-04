@@ -1,0 +1,9 @@
+ .valid {
+      border: 3px solid #008000 !important;
+      z-index: 999999;
+  }
+
+ .invalid {
+      border: 3px solid #cc0000 !important;
+      z-index: 999999;
+ }
